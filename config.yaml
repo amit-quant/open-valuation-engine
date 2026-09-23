@@ -1,0 +1,20 @@
+# Open Valuation Engine - System Configuration
+
+system:
+  environment: "development" # development, testing, production
+  logging_level: "INFO"
+  timezone: "UTC"
+
+market_data:
+  default_source: "yahoo_finance" # options: yahoo_finance, bloomberg_bpipe, reuters_eikon
+  yield_curve_interpolation: "CubicSpline" # options: Linear, CubicSpline, LogLinear
+  fallback_risk_free_rate: 0.045 # Default SOFR / Treasury rate (4.5%) if API connection drops
+
+engine_preferences:
+  monte_carlo_simulations: 100000 
+  pricing_precision: 4 # Decimal places for output profiles
+  allow_negative_rates: false 
+
+api_endpoints:
+  yahoo_finance_timeout: 30 # seconds
+  bloomberg_auth_env_var: "BBG_AUTH_TOKEN" 
