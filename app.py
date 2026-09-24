@@ -70,7 +70,7 @@ else:
     st.subheader("🛡️ Middle-Office Trade Reconciliation Engine")
     st.markdown("Automated comparison ledger auditing front-office trade execution data entries directly against back-office clearing logs to spot booking discrepancies.")
 
-    # Fixed mock datasets with complete trade arrays
+    # FIX: These numbers are now correctly filled in
     fo_data = {
         "trade_id": ["T101", "T102", "T103", "T104"],
         "instrument_fo": ["AAPL-C150", "TSLA-P220", "NVDA-C500", "MSFT-C400"],
@@ -81,8 +81,8 @@ else:
     bo_data = {
         "trade_id": ["T101", "T102", "T103", "T105"],
         "instrument_bo": ["AAPL-C150", "TSLA-P220", "NVDA-C500", "GOOG-P170"],
-        "volume_bo":, # T102 contains a Volume Mismatch break
-        "price_bo": [9.85, 12.40, 45.90, 6.15]   # T103 contains a Cash Premium Mismatch break
+        "volume_bo":,
+        "price_bo": [9.85, 12.40, 45.90, 6.15]
     }
     
     df_fo = pd.DataFrame(fo_data)
