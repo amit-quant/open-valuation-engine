@@ -70,7 +70,7 @@ else:
     st.subheader("🛡️ Middle-Office Trade Reconciliation Engine")
     st.markdown("Automated comparison ledger auditing front-office trade execution data entries directly against back-office clearing logs to spot booking discrepancies.")
 
-    # Generate static institutional mock datasets for verification testing
+    # Fixed mock datasets with complete trade arrays
     fo_data = {
         "trade_id": ["T101", "T102", "T103", "T104"],
         "instrument_fo": ["AAPL-C150", "TSLA-P220", "NVDA-C500", "MSFT-C400"],
