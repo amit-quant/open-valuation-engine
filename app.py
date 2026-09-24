@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import io
 import yfinance as yf
 from ove.engine import EuropeanOption, ValuationEngine
 from ove.vol_solver import ImpliedVolatilitySolver
@@ -70,23 +71,12 @@ else:
     st.subheader("🛡️ Middle-Office Trade Reconciliation Engine")
     st.markdown("Automated comparison ledger auditing front-office trade execution data entries directly against back-office clearing logs to spot booking discrepancies.")
 
-    # FIX: These numbers are now correctly filled in
-    fo_data = {
-        "trade_id": ["T101", "T102", "T103", "T104"],
-        "instrument_fo": ["AAPL-C150", "TSLA-P220", "NVDA-C500", "MSFT-C400"],
-        "volume_fo":,
-        "price_fo": [9.85, 12.40, 45.10, 18.25]
-    }
+    # Using CSV strings to safely transport data arrays without brackets
+    fo_csv = "trade_id,instrument_fo,volume_fo,price_fo\nT101,AAPL-C150,100,9.85\nT102,TSLA-P220,250,12.40\nT103,NVDA-C500,500,45.10\nT104,MSFT-C400,150,18.25"
+    bo_csv = "trade_id,instrument_bo,volume_bo,price_bo\nT101,AAPL-C150,100,9.85\nT102,TSLA-P220,180,12.40\nT103,NVDA-C500,500,45.90\nT105,GOOG-P170,300,6.15"
     
-    bo_data = {
-        "trade_id": ["T101", "T102", "T103", "T105"],
-        "instrument_bo": ["AAPL-C150", "TSLA-P220", "NVDA-C500", "GOOG-P170"],
-        "volume_bo":,
-        "price_bo": [9.85, 12.40, 45.90, 6.15]
-    }
-    
-    df_fo = pd.DataFrame(fo_data)
-    df_bo = pd.DataFrame(bo_data)
+    df_fo = pd.read_csv(io.StringIO(fo_csv))
+    df_bo = pd.read_csv(io.StringIO(bo_csv))
 
     col1, col2 = st.columns(2)
     with col1:
